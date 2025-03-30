@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Get;
 use App\Api\Processor\CreateUserProcessor;
 use App\Api\Resource\CreateUser;
 use App\Doctrine\Trait\TimestampableTrait;
@@ -28,6 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[Delete(security: 'is_granted("' . RoleEnum::ROLE_USER . '") and object == user or is_granted("' . RoleEnum::ROLE_ADMIN . '")')]
 #[Put(security: 'is_granted("' . RoleEnum::ROLE_USER . '") and object == user or is_granted("' . RoleEnum::ROLE_ADMIN . '")')]
 #[GetCollection()]
+#[Get(uriTemplate: '/users/{uuid}', uriVariables: ['uuid'])]
 #[ORM\Table(name: TableEnum::USER)]
 #[ApiFilter(DateFilter::class, properties: ['createdAt' => 'partial'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface

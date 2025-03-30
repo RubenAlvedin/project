@@ -56,6 +56,12 @@ services:
       # - ./docker/db/data:/var/lib/mysql:rw
 ###< doctrine/doctrine-bundle ###
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
 volumes:
   caddy_data:
   caddy_config:
